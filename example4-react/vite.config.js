@@ -1,7 +1,5 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
-import fs from 'fs/promises';
-import path from 'path';
 
 function myPlugin() {
   return {
@@ -18,23 +16,13 @@ function myPlugin2() {
   return {
     name: 'example4-react-2',
     enforce: 'pre',
-    resolveId(id) {
-      if (id.endsWith('.user')) {
-        return id + '.jsx';
-      }
-    },
-    async load(id) {
-      if (id.endsWith('.user.jsx')) {
-        const filePath = path.resolve('./src', id.replace(/\.jsx$/, ''));
-        return (await fs.readFile(filePath)).toString();
-      }
-    },
     transform(source, id) {
-      if (id.endsWith('.user.jsx')) {
+      if (id.endsWith('.userx')) {
         const user = JSON.parse(source);
         return `
           export default () => (
             <div>
+              <p>This is from .userx file</p>
               <p>name: ${user.name}</p>
               <ul>
                 ${user.fruits.map((fruit) => `<li>${fruit}</li>`).join('')}
@@ -49,5 +37,15 @@ function myPlugin2() {
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [myPlugin(), myPlugin2(), react()],
+  esbuild: {
+    loader: 'jsx',
+    include: [/.*\.jsx$/, /.*\.userx$/],
+  },
+  plugins: [
+    myPlugin2(),
+    react({
+      include: [/\.jsx$/, /\.userx$/],
+    }),
+    myPlugin(),
+  ],
 });
