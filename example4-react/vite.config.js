@@ -17,13 +17,13 @@ function myPlugin2() {
     name: 'example4-react-2',
     enforce: 'pre',
     transform(source, id) {
-      if (id.endsWith('.userx')) {
+      if (id.endsWith('.user')) {
         const user = JSON.parse(source);
         return `
           export default () => (
             <div>
-              <p>This is from .userx file</p>
-              <p>name: ${user.name}</p>
+              <p>This is coming from .user file!</p>
+              <p>${user.name}</p>
               <ul>
                 ${user.fruits.map((fruit) => `<li>${fruit}</li>`).join('')}
               </ul>
@@ -39,13 +39,7 @@ function myPlugin2() {
 export default defineConfig({
   esbuild: {
     loader: 'jsx',
-    include: [/.*\.jsx$/, /.*\.userx$/],
+    include: [/.*\.jsx$/, /.*\.user$/],
   },
-  plugins: [
-    myPlugin2(),
-    react({
-      include: [/\.jsx$/, /\.userx$/],
-    }),
-    myPlugin(),
-  ],
+  plugins: [react(), myPlugin(), myPlugin2()],
 });
