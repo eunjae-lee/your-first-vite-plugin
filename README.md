@@ -8,4 +8,4 @@ This repository contains examples to gradually learn how Vite Plugin works.
 - example4-react: vite config to import text file and transform it to react component
 - example4-vue: vite config to import text file and transform it to vue component
 - example5: vite config for macro plugin to compute things on build time
-- example6: a simple implementation of tRPC (sort of) for Next.js
+- example6: the same as example5, but with TypeScript support
