@@ -1,2 +1,2 @@
-import virtualModule from 'my-random-virtual-module';
-console.log(virtualModule);
+import branch from 'current-git-branch';
+console.log(branch);

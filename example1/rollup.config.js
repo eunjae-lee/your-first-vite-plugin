@@ -2,8 +2,11 @@ function myPlugin() {
   return {
     name: 'example1',
     transform(source, id) {
-      if (id.endsWith('some-lib.js')) {
-        return source.replace('Hello', 'Hello World');
+      if (id.endsWith('main.js')) {
+        return source.replaceAll(
+          'process.env.NODE_ENV',
+          JSON.stringify('production'),
+        );
       }
     },
   };
