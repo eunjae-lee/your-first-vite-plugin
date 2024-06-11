@@ -1,14 +1,7 @@
 function myPlugin() {
   return {
     name: 'example1',
-    transform(source, id) {
-      if (id.endsWith('main.js')) {
-        return source.replaceAll(
-          'process.env.NODE_ENV',
-          JSON.stringify('production'),
-        );
-      }
-    },
+    transform(source, id) {},
   };
 }
 

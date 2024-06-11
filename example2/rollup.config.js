@@ -10,19 +10,8 @@ async function getCurrentGitBranch() {
 function myPlugin() {
   return {
     name: 'example2',
-    resolveId(source) {
-      if (source === 'current-git-branch') {
-        // let me handle this `current-git-branch` module by myself!
-        return source;
-      }
-    },
-    async load(id) {
-      if (id === 'current-git-branch') {
-        const branch = await getCurrentGitBranch();
-        return `export default "${branch}"`;
-      }
-      return null;
-    },
+    resolveId(source) {},
+    async load(id) {},
   };
 }
 
