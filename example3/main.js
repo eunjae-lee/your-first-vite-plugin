@@ -1,3 +1,3 @@
-import { usernames, builtAt } from 'my-build-time-library';
+import { usernames } from 'my-build-time-library';
 
-console.log('hi', { usernames, builtAt });
+console.log('hi', usernames);
