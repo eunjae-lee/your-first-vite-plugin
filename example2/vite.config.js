@@ -1,5 +1,7 @@
 import { defineConfig } from 'vite';
 
+// https://jsonplaceholder.typicode.com/users
+
 function buildTimeLibrary() {
   return {
     name: 'example2',
